@@ -7,16 +7,17 @@ source = requests.get('http://coreyms.com').text
  
 soup = BeautifulSoup(source, 'lxml')
 
+csv_file = open('lopsang.csv', 'w')
 
-
-
+csv_writer = csv.writer(csv_file)
+csv_writer.writerow(['title', 'summary', 'video_link'] )
 
 for article in soup.find_all('article'):
 
 	title = article.header.h2.a.text
 	print(title)
 
-	summary = article.find('div', class_='entry-content').p.text
+	summary = article.div.p.text
 	print(summary)
 
 	try:
@@ -33,5 +34,7 @@ for article in soup.find_all('article'):
 
 	print()
 
+	csv_writer.writerow([title, summary, yt_link])
 
+csv_file.close()
 
