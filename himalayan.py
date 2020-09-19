@@ -15,7 +15,7 @@ def kathmadnupost():
 		csv_writer.writerow(['title', 'summary', 'article-link'] )
 
 		#title = soup.find('div', class_='row order')
-		head = soup.find('div', class_='grid-first')
+		head = soup.find('div', class_='row order')
 
 		for article in head.find_all('article', class_='article-image'):
 
